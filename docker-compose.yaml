@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      POSTGRES_USER: incident_user
+      POSTGRES_PASSWORD: incident_pass
+      POSTGRES_DB: incidents
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    container_name: backend
+    environment:
+      DATABASE_URL: postgresql://incident_user:incident_pass@postgres:5432/incidents
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
