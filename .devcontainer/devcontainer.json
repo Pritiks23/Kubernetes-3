@@ -1,0 +1,8 @@
+{
+  "name": "k8s-dev",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  "features": {
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {}
+  },
+  "postCreateCommand": "echo 'Codespace ready for Kubernetes'"
+}
