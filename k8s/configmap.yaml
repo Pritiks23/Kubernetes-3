@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: incident-system
+
+data:
+  POSTGRES_USER: incident_user
+  POSTGRES_PASSWORD: incident_pass
+  POSTGRES_DB: incidents
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+  namespace: incident-system
+
+data:
+  DATABASE_URL: postgresql://incident_user:incident_pass@postgres:5432/incidents
